@@ -13,6 +13,7 @@
         Console.WriteLine("1 - Abrir arquivo");
         Console.WriteLine("2 - Criar novo arquivo");
         Console.WriteLine("0 - Sair");
+        Console.WriteLine();
 
         short option = short.Parse(Console.ReadLine());
 
@@ -25,7 +26,22 @@
         }
     }
 
-    static void Abrir() { }
+    static void Abrir()
+    {
+        Console.Clear();
+        Console.WriteLine("Qual o caminho do arquivo?");
+        string path = Console.ReadLine();
+
+        using (var file = new StreamReader(path))
+        {
+            string text = file.ReadToEnd().ToLower();
+            Console.WriteLine(text);
+        }
+        Console.WriteLine("");
+        Console.ReadLine();
+
+        Menu();
+    }
 
     static void Editar()
     {
